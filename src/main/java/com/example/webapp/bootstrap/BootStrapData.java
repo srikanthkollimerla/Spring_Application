@@ -33,10 +33,17 @@ public class BootStrapData implements CommandLineRunner {
         publisher.setCity("Boston");
         publisher.setState("MA");
 
+        Publisher grandCentral = new Publisher();
+        grandCentral.setName("Grand Central Publishing");
+        grandCentral.setCity("New York");
+        grandCentral.setState("NY");
+
         publishRepository.save(publisher);
+        publishRepository.save(grandCentral);
 
         sidney.getBooks().add(book);
         book.getAuthors().add(sidney);
+        book.setPublisher(grandCentral);
 
         authorRepository.save(sidney);
         bookRepository.save(book);
@@ -50,6 +57,7 @@ public class BootStrapData implements CommandLineRunner {
 
 
         publisher.getBooks().add(twilight_saga);
+        grandCentral.getBooks().add(book);
 
 
         authorRepository.save(stephenie);
